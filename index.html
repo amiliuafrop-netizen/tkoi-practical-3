@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111a33">
+  <meta name="description" content="Інтерактивна практична робота №3 з дисципліни ТКОІ: порівняльний аналіз сучасних текстових редакторів з автоматичним звітом у PDF.">
+  <title>Практична робота №3 · ТКОІ</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--navy:#101b31;--ink:#1c2740;--muted:#657086;--border:#e4e7f0;--surface:#fff;--soft:#f7f8fc;--lilac:#7664ef;--purple:#6255d9;--lavender:#f1efff;--mint:#3f9d8e;--shadow:0 12px 38px rgba(20,29,58,.075)}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:98px}body{margin:0;font-family:'Manrope','DM Sans',Arial,sans-serif;color:var(--ink);background:#fff;font-size:14px;line-height:1.75;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}img{max-width:100%}.wrap{width:min(1220px,calc(100% - 72px));margin:auto}.progress-track{height:3px;position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;pointer-events:none}.progress-track span{display:block;height:100%;width:0;background:linear-gradient(90deg,#8b75ff,#b4a8ff);transition:width .1s}.site-header{height:77px;padding:0 max(36px,calc((100vw - 1220px)/2));display:flex;align-items:center;gap:28px;border-bottom:1px solid rgba(220,224,236,.8);background:rgba(255,255,255,.96);backdrop-filter:blur(15px);position:sticky;top:0;z-index:30}.brand{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:800;letter-spacing:-.6px;color:#15223b;line-height:1.25}.brand-sub{display:block;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:#99a0b0}.brand-mark{display:grid;place-items:center;background:#7567ec;color:#fff;border-radius:11px;width:42px;height:42px;font-size:17px;letter-spacing:-.9px}.brand-mark span{color:#d6d0ff}.head-nav{display:flex;gap:32px;margin-left:auto;color:#5c6578;font-size:12px;font-weight:700}.head-nav a:hover{color:var(--purple)}.save-status{display:flex;align-items:center;gap:8px;border-left:1px solid #e6e8f1;padding-left:24px;color:#6c7485;font-size:11px;font-weight:700;white-space:nowrap}.status-dot{display:block;width:7px;height:7px;background:#47b69e;border-radius:50%;box-shadow:0 0 0 4px #ebfaf5}.hero{background:#101b31;position:relative;overflow:hidden;color:#fff;isolation:isolate}.hero::before{content:'';position:absolute;right:-8%;top:-160px;width:700px;height:700px;background:radial-gradient(circle,rgba(112,92,215,.35),transparent 67%);z-index:-1}.hero::after{content:'';position:absolute;left:38%;top:0;width:1px;height:100%;background:rgba(255,255,255,.03);box-shadow:170px 0 rgba(255,255,255,.03),340px 0 rgba(255,255,255,.03),510px 0 rgba(255,255,255,.03);z-index:-1}.hero-inner{min-height:527px;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(360px,.82fr);align-items:center;gap:46px}.hero-copy{padding:65px 0 64px}.eyebrow{color:#b6abff;letter-spacing:2.4px;font-size:11px;font-weight:800;display:flex;align-items:center;gap:13px}.eyebrow-line{height:1px;width:29px;background:#aa9aff}.eyebrow-sep{opacity:.45}.hero h1{font-size:clamp(33px,3.6vw,56px);letter-spacing:-2.3px;line-height:1.15;margin:23px 0 20px;max-width:710px;font-weight:800}.hero h1 em{font-style:normal;color:#b4a6ff}.hero-lead{max-width:610px;color:#b8c0d0;font-size:15px;line-height:1.9;margin:0}.hero-actions{display:flex;gap:11px;margin:28px 0 30px;flex-wrap:wrap}.btn{min-height:47px;padding:12px 20px;display:inline-flex;gap:14px;align-items:center;justify-content:center;border-radius:9px;border:1px solid transparent;font-size:12px;font-weight:800;transition:transform .18s,background .18s,box-shadow .18s;line-height:1.35;text-align:center}.btn:hover{transform:translateY(-2px)}.btn.primary{background:#8c7cf8;color:#fff;box-shadow:0 8px 22px rgba(115,97,227,.19)}.btn.primary:hover{background:#7868ec}.btn.ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:white}.btn.secondary{background:#fff;color:#46516b;border-color:#dce0ea}.hero-facts{display:flex;flex-wrap:wrap;gap:19px;color:#c4cbe0;font-size:11px;font-weight:700}.hero-facts span{display:flex;gap:8px;align-items:center}.hero-facts .fact-icon{color:#a997fd;font-size:16px}.hero-visual{height:434px;position:relative;display:flex;align-items:center;justify-content:center}.editor-window{width:392px;transform:rotate(-3deg);border-radius:13px 13px 7px 7px;background:#fff;box-shadow:0 35px 100px rgba(2,4,20,.34),0 0 0 1px rgba(255,255,255,.07);color:#283657;position:relative;overflow:visible}.window-top{height:40px;border-radius:13px 13px 0 0;background:#f1f1f9;border-bottom:1px solid #e4e6f4;display:flex;align-items:center;gap:16px;padding:0 17px;font-size:9px;color:#7b83a3}.traffic{display:flex;gap:4px}.traffic i{display:block;width:7px;height:7px;border-radius:50%;background:#ffb7b6}.traffic i:nth-child(2){background:#f7d88c}.traffic i:nth-child(3){background:#a3dbb1}.window-dots{margin-left:auto;font-size:16px;letter-spacing:2px}.toolbar-faux{height:47px;background:#fff;border-bottom:1px solid #e8eaf4;padding:0 16px;display:flex;align-items:center;gap:17px;font-size:11px;color:#747e9e}.toolbar-faux>span:first-child{border:1px solid #e5e8f0;border-radius:3px;padding:3px 8px;margin-right:12px;font-size:8px}.toolbar-lines{font-size:20px}.page-faux{margin:20px auto 24px;background:#fff;width:78%;min-height:248px;padding:21px 23px;box-shadow:0 2px 14px rgba(18,31,55,.07);border:1px solid #eaedf6}.editor-window::after{content:'';position:absolute;z-index:-1;left:0;right:0;bottom:0;background:#f7f7fd;height:291px}.faux-kicker{font-size:7px;letter-spacing:1px;font-weight:800;color:#8a79f0}.faux-h1{height:9px;width:83%;border-radius:2px;background:#27395b;margin-top:12px}.faux-h1.short{width:59%;margin-top:5px}.faux-line{height:5px;border-radius:2px;background:#d8deeb;margin-top:9px}.faux-line.half{width:62%}.faux-table{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #d6dce8;margin-top:15px}.faux-table div{height:26px;border-right:1px solid #d6dce8;border-bottom:1px solid #d6dce8;background:#fbfbff}.faux-table div:nth-child(-n+3){background:#eeecff}.faux-table div:nth-child(3n){border-right:0}.faux-table div:nth-last-child(-n+3){border-bottom:0}.float-pill{position:absolute;z-index:2;background:#fff;border-radius:9px;padding:10px 14px;font-size:10px;font-weight:800;color:#34415b;box-shadow:0 14px 35px rgba(0,0,0,.2);white-space:nowrap}.float-pill span{color:#8676f7;padding-right:5px}.p1{top:37px;left:-18px;transform:rotate(4deg)}.p2{right:-17px;top:106px;transform:rotate(5deg)}.p3{left:13px;bottom:28px;transform:rotate(2deg)}.cursor-badge{position:absolute;right:-19px;bottom:40px;background:#8d7df1;color:#fff;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:800;box-shadow:0 5px 15px #7f71db55}.cursor-arrow{position:absolute;left:-15px;top:-18px;font-size:22px;color:#8d7df1}
+.layout{display:grid;grid-template-columns:244px minmax(0,1fr);gap:66px;padding-top:65px;padding-bottom:60px}.sidebar{align-self:start;position:sticky;top:100px}.side-box{border:1px solid #e7e9f2;border-radius:13px;padding:22px 12px;box-shadow:0 4px 16px #121c2d05}.side-label{font-size:9px;letter-spacing:1.8px;font-weight:800;color:#a4abbb;padding:0 16px 14px}.side-link{display:flex;align-items:center;gap:13px;color:#6d778d;font-size:11px;font-weight:750;padding:10px 14px;border-radius:7px;transition:background .18s,color .18s}.side-link span{font-size:10px;color:#b3b8c6;font-weight:800}.side-link.active,.side-link:hover{color:#6658dc;background:#f1efff}.side-link.active span,.side-link:hover span{color:#7465e2}.sidebar-progress{margin-top:23px;padding:18px;border:1px solid #e8e9f1;background:#fbfbff;border-radius:12px}.sidebar-progress-row{display:flex;justify-content:space-between;font-size:11px;font-weight:800}.sidebar-progress-row b{color:var(--purple)}.meter{height:5px;border-radius:10px;background:#e8e5fc;margin:13px 0 9px;overflow:hidden}.meter span{display:block;height:100%;width:0;background:#8d7af7;transition:width .25s}.sidebar-progress p{font-size:10px;color:#8b92a4;line-height:1.65;margin:0}.content{min-width:0}.section{padding:11px 0 50px;border-bottom:1px solid #e9ecf3;margin-bottom:39px;scroll-margin-top:95px}.section:last-child{border:0;margin-bottom:0}.section-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}.section-kicker{font-size:10px;color:#7767eb;letter-spacing:1.6px;font-weight:800;margin-bottom:8px}.section h2{font-size:clamp(22px,2.3vw,29px);line-height:1.28;letter-spacing:-1.05px;margin:0;font-weight:800;color:#18243e}.number-ghost{font-size:42px;line-height:1;font-weight:800;letter-spacing:-2px;color:#f1f1fa}.section-desc{color:#667187;max-width:760px;margin:13px 0 24px;font-size:13px;line-height:1.9}.outcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.outcome{padding:21px 18px;border:1px solid #e9eaf2;border-radius:11px;background:#fff}.outcome-icon{display:block;font-size:12px;letter-spacing:1px;font-weight:800;color:#806dec;margin-bottom:15px}.outcome b{font-size:13px}.outcome p{color:#758098;font-size:11px;margin:7px 0 0;line-height:1.75}.info-line{display:flex;gap:14px;padding:17px 20px;background:#f4f2ff;border:1px solid #e8e2ff;border-radius:10px;margin-top:19px;font-size:11px;color:#545d77;line-height:1.85}.info-line b{color:#2b3652}.info-icon{width:24px;height:24px;background:#ded8ff;flex:0 0 24px;border-radius:50%;color:#6150ca;display:grid;place-items:center;font-weight:800;font-size:13px}.concept-list{border:1px solid #e7e9f1;border-radius:11px;overflow:hidden}.concept-list details+details{border-top:1px solid #e7e9f1}.concept-list summary{cursor:pointer;list-style:none;display:flex;gap:17px;align-items:center;padding:17px 20px;font-size:13px;font-weight:800}.concept-list summary::-webkit-details-marker{display:none}.concept-no{color:#7867e9;font-size:10px;letter-spacing:.8px}.chev{margin-left:auto;color:#9ca5b8;font-size:20px;font-weight:500;transition:transform .2s}.concept-list details[open] .chev{transform:rotate(180deg)}.concept-list details[open] summary{background:#fcfbff;color:#6254d2}.details-content{padding:0 20px 20px 53px;color:#657086;font-size:12px;line-height:1.9}.editor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.editor-card{border:1px solid #e7eaf1;border-radius:12px;padding:22px;display:flex;flex-direction:column;min-height:275px;transition:transform .2s,box-shadow .2s}.editor-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.editor-card-top{display:flex;justify-content:space-between;align-items:center}.product-logo,.th-product{display:grid;place-items:center;width:37px;height:37px;border-radius:9px;color:white;font-weight:800;font-size:21px;font-family:Arial,sans-serif}.product-logo.word,.th-product.word{background:#2764b9}.product-logo.docs,.th-product.docs{background:#4085ee}.product-logo.writer,.th-product.writer{background:#438e58}.product-logo.only,.th-product.only{background:#ef594c}.editor-chip{font-size:9px;border-radius:100px;border:1px solid #e5e8f0;color:#68738a;padding:4px 10px;font-weight:800;white-space:nowrap}.editor-card h3{font-size:16px;letter-spacing:-.45px;margin:16px 0 6px}.editor-card p{font-size:11px;line-height:1.85;color:#6e788e;margin:0}.editor-features{display:flex;gap:6px;flex-wrap:wrap;margin-top:17px;margin-bottom:18px}.editor-features span{font-size:9px;font-weight:800;color:#6d64c8;background:#f2efff;padding:4px 9px;border-radius:5px}.editor-card>a{display:flex;justify-content:space-between;color:#6758db;font-weight:800;font-size:11px;align-items:center;margin-top:auto;padding-top:9px}.editor-card>a:hover{text-decoration:underline}.footnote{font-size:10px;color:#8890a2;margin:14px 0 0}.task-card{border:1px solid #e7e9f1;border-radius:13px;padding:25px;margin-bottom:17px}.task-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.task-num{letter-spacing:1.4px;font-size:9px;color:#7868e5;font-weight:800}.points{font-size:10px;font-weight:800;color:#5b6782;background:#f2f4f9;padding:4px 9px;border-radius:5px}.task-card h3{font-size:18px;letter-spacing:-.4px;margin:9px 0 5px}.task-card>p{color:#6a748a;font-size:12px;margin:0 0 18px;line-height:1.9}.source-box{border:1px solid #e6e7f0;border-radius:9px;overflow:hidden;background:#f9faff}.source-top{background:#eff1f9;border-bottom:1px solid #e5e7ef;padding:10px 15px;display:flex;align-items:center;justify-content:space-between;gap:8px}.source-top b{font-size:9px;letter-spacing:1.3px;color:#65738d}.mini-btn{background:#fff;border:1px solid #dfe2ee;border-radius:6px;padding:6px 10px;font-size:10px;color:#5b5fb7;font-weight:800}.mini-btn:hover{background:#edeafd}.source-box #source-text{white-space:pre-wrap;padding:16px;font-size:11px;line-height:1.88;color:#46546f}.steps{margin-top:23px;display:grid;gap:13px}.step{display:flex;align-items:start;gap:11px;color:#59647b;font-size:11px;line-height:1.85}.step>span{display:grid;place-items:center;width:24px;height:24px;border:1px solid #dedafc;border-radius:7px;color:#6a60d9;font-size:11px;font-weight:800;flex:0 0 24px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field{margin-top:14px}.field label{display:block;font-size:11px;font-weight:800;color:#34405a;margin-bottom:7px}.field input,.field select,.field textarea{display:block;width:100%;padding:12px 13px;color:#263451;border:1px solid #dde1ec;border-radius:8px;background:#fff;font-size:12px;line-height:1.6;outline:0;transition:box-shadow .15s,border-color .15s}.field input:focus,.field select:focus,.field textarea:focus{border-color:#8774f1;box-shadow:0 0 0 3px #eeeafe}.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23828ba0' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:35px}.field textarea{resize:vertical;min-height:97px}.hint{font-size:10px;color:#99a0b0;margin-top:6px;display:block}.scale{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}.scale>span{padding:5px 10px;border-radius:30px;background:#f3f4fa;font-size:10px;color:#69758e}.scale b{color:#6a5dda}.compare-table-scroller{overflow-x:auto;border:1px solid #e4e7f0;border-radius:11px}.comparison-table{border-collapse:collapse;width:100%;min-width:590px;font-size:11px;text-align:center}.comparison-table th,.comparison-table td{padding:12px 8px;border-bottom:1px solid #e9ebf2}.comparison-table th{background:#f6f6fc;font-size:10px;font-weight:800;color:#48546f;white-space:nowrap}.comparison-table th:first-child{text-align:left;width:29%;padding-left:17px}.comparison-table td:first-child{text-align:left;padding-left:17px;color:#34405b;font-weight:700}.comparison-table tr:last-child td{border-bottom:0}.comparison-table tr:hover td{background:#fcfbff}.th-product.small{width:18px;height:18px;border-radius:4px;font-size:11px;display:inline-grid;vertical-align:middle;margin-right:4px}.comparison-table select{width:59px;padding:7px 8px;border:1px solid #dce0ea;border-radius:6px;background:#fff;color:#52627c;font-weight:700;text-align:center;outline:0}.comparison-table select:focus{border-color:#7566e9}.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.analysis-card{border:1px solid #e6e8f1;border-radius:11px;padding:20px;min-height:192px}.analysis-heading{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:11px}.analysis-heading span{color:#939daf;font-size:10px}.result-bars{margin-top:17px}.bar-item{margin-bottom:12px}.bar-label{display:flex;justify-content:space-between;font-weight:750;font-size:10px;color:#53617c;margin-bottom:6px}.bar-track{width:100%;background:#eeeef7;height:7px;border-radius:20px;overflow:hidden}.bar-track>span{height:100%;display:block;border-radius:20px;transition:width .2s;background:linear-gradient(90deg,#7767e4,#b6abff)}.bar-value{font-weight:800;color:#665ad7}.analysis-card.insight{background:#f7f5ff;border-color:#ede8ff}.analysis-spark{color:#7869e5;font-size:21px}.analysis-card h3{font-size:14px;margin:5px 0 8px}.analysis-card p{font-size:10px;color:#72738c;line-height:1.9;margin:0 0 8px}.analysis-card .mini-insight{font-weight:800;color:#6658d3;margin-top:12px}.muted{color:#9da5b6;font-size:11px}.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.case-option{cursor:pointer;position:relative}.case-option input{position:absolute;opacity:0;width:1px;height:1px}.case-card{height:100%;display:block;border:1px solid #e5e8f1;border-radius:10px;padding:17px 13px;transition:all .15s}.case-icon{display:block;font-size:20px;color:#8a78ee;margin-bottom:12px}.case-card b{display:block;font-size:11px;line-height:1.65}.case-card small{display:block;color:#7e899c;font-size:10px;line-height:1.75;margin-top:9px}.case-option input:checked+.case-card{background:#f5f2ff;border-color:#9d92f1;box-shadow:0 0 0 2px #e5e0ff}.case-option input:focus-visible+.case-card{outline:3px solid #b1a9fa;outline-offset:2px}.quiz-list{display:grid;gap:12px}.quiz-item{padding:19px 20px;border-radius:11px;border:1px solid #e6e8f0}.quiz-item h3{margin:0 0 13px;font-size:12px;line-height:1.6;display:flex;gap:11px}.quiz-item h3 .quiz-num{color:#7c6de4;font-weight:800}.quiz-answers{display:grid;gap:7px}.quiz-answer{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:11px;color:#637087;padding:8px 10px;border-radius:6px;border:1px solid transparent}.quiz-answer:hover{background:#f8f8ff}.quiz-answer:has(input:checked){background:#f4f2ff;border-color:#e8e3ff;color:#48418d}.quiz-answer input{accent-color:#7968e8;margin-top:4px}.quiz-feedback{display:none;margin:12px 0 0;padding:9px 11px;border-radius:7px;background:#f5f8fc;color:#516078;font-size:10px;line-height:1.8}.quiz-item.checked .quiz-feedback{display:block}.quiz-item.correct{border-color:#c9ece1}.quiz-item.incorrect{border-color:#f2d2d6}.quiz-item.correct .quiz-feedback{background:#ecf9f3;color:#278366}.quiz-item.incorrect .quiz-feedback{background:#fff4f4;color:#a5525b}.quiz-actions{display:flex;align-items:center;gap:18px;margin-top:18px;flex-wrap:wrap}.quiz-actions #quiz-summary{font-size:12px;color:#5e6b82;font-weight:800}.report-section{border-bottom:0;margin-bottom:15px;padding-bottom:12px}.report-panel{padding:26px;border:1px solid #dfdff1;border-radius:14px;background:#fdfdff;box-shadow:0 16px 40px rgba(60,65,120,.055)}.report-top{display:flex;gap:15px;align-items:center;padding-bottom:18px;border-bottom:1px solid #e9eaf4;margin-bottom:4px}.pdf-stamp{display:grid;place-items:center;width:44px;height:49px;border-radius:7px;background:#e25f5d;color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;flex:0 0 44px}.report-top b{font-size:13px}.report-top p{font-size:10px;color:#8a93a6;margin:4px 0 0}.required{color:#e4596a}.export-checks{display:flex;gap:9px;flex-wrap:wrap;margin:21px 0}.checkline{font-size:10px;color:#8e98ab;display:inline-flex;gap:6px;align-items:center;background:#f0f1f7;padding:7px 9px;border-radius:6px;font-weight:700}.checkline.done{background:#e9f7f1;color:#26876e}.checkline.done span{font-weight:900}.report-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.export-btn{font-size:12px}.export-message{font-size:11px;min-height:15px;margin:12px 0 0;color:#5a6282}.export-message.error{color:#c35365}.criteria-box{padding:21px;border:1px solid #e7e9f2;border-radius:10px;margin-top:17px}.criteria-box>b{font-size:12px}.criteria-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 22px;margin-top:14px}.criteria-grid span{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:#66728a;border-bottom:1px dashed #e0e5ed;padding-bottom:6px}.criteria-grid strong{color:#6253d8}.criteria-box p{font-size:10px;color:#929aab;margin:13px 0 0;line-height:1.8}.reset-btn{display:block;padding:10px 0;background:none;border:0;color:#9b9dab;text-decoration:underline;text-underline-offset:4px;font-size:10px;margin:15px 0 0}.reset-btn:hover{color:#c15564}.sources-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sources-list a{padding:15px;border:1px solid #e8eaf1;border-radius:9px;font-size:11px;font-weight:700;display:flex;justify-content:space-between;gap:10px;align-items:center}.sources-list a:hover{color:#6c5dd9;border-color:#d7d0fa}.sources-list span{color:#8f7ee7}.footer{background:#111b30;color:#fff;padding:33px 0}.footer-flex{display:flex;align-items:center;justify-content:space-between;gap:24px}.footer b{font-size:14px}.footer b span{color:#8a7af6}.footer p{color:#8d98b4;font-size:10px;margin:4px 0 0}.footer-flex>span{font-size:10px;color:#8d98b4}.toast{position:fixed;right:23px;bottom:22px;background:#1d2a46;color:#fff;font-size:12px;border-radius:10px;padding:12px 18px;box-shadow:0 15px 38px #18233e33;z-index:90;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .2s,transform .2s}.toast.show{opacity:1;transform:translateY(0)}
+#print-document{display:none}
+@media(max-width:1100px){.hero-inner{grid-template-columns:1.15fr .85fr}.hero-visual{transform:scale(.88);transform-origin:center}.layout{gap:35px;grid-template-columns:215px minmax(0,1fr)}.p1{left:-31px}.p2{right:-29px}}
+@media(max-width:850px){.site-header{padding:0 24px;height:70px}.head-nav{gap:18px}.save-status{display:none}.hero-inner{grid-template-columns:1fr;gap:0;padding-top:0}.hero-copy{padding:54px 0 15px}.hero-visual{height:350px;transform:scale(.9)}.hero h1{font-size:43px;max-width:800px}.layout{grid-template-columns:1fr;gap:0;padding-top:42px}.sidebar{display:none}.wrap{width:min(100% - 44px,770px)}.hero-visual .editor-window{transform:rotate(-2deg)}}
+@media(max-width:600px){html{scroll-padding-top:76px}.site-header{padding:0 17px}.brand{font-size:15px}.brand-mark{width:37px;height:37px;font-size:15px}.brand-sub{font-size:9px}.head-nav{gap:12px;font-size:10px}.head-nav a:first-child{display:none}.wrap{width:calc(100% - 32px)}.hero-copy{padding:40px 0 9px}.hero h1{font-size:36px;line-height:1.19;letter-spacing:-1.7px;margin:16px 0}.hero-lead{font-size:12px;line-height:1.85}.eyebrow{letter-spacing:1.3px;font-size:9px}.hero-actions{gap:7px;margin:22px 0}.hero-actions .btn{padding:11px 13px;font-size:10px;min-height:42px}.hero-facts{gap:10px 17px}.hero-facts span{font-size:10px}.hero-visual{transform:scale(.77);height:318px;transform-origin:50% 13%;margin-bottom:-49px}.editor-window{min-width:380px}.p1{left:3px}.p2{right:-13px}.layout{padding-top:37px;padding-bottom:30px}.section{padding-bottom:35px;margin-bottom:28px}.section h2{font-size:23px}.section-desc{font-size:12px}.number-ghost{font-size:34px}.outcome-grid{grid-template-columns:1fr}.outcome{padding:14px 16px}.outcome-icon{margin-bottom:5px}.info-line{padding:15px}.editor-grid{grid-template-columns:1fr}.editor-card{min-height:240px;padding:18px}.task-card{padding:17px}.form-grid{grid-template-columns:1fr;gap:0}.cases{grid-template-columns:1fr}.case-card{padding:12px 15px}.case-icon{margin-bottom:3px;font-size:17px}.case-card small{margin-top:4px}.analysis-grid{grid-template-columns:1fr}.analysis-card{min-height:auto}.quiz-item{padding:15px}.report-panel{padding:16px}.criteria-grid,.sources-list{grid-template-columns:1fr}.footer-flex{display:block}.footer-flex>span{display:block;margin-top:17px}.report-controls .btn{width:100%}.source-box #source-text{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+@media print{html,body{background:#fff!important;margin:0!important}body>*:not(#print-document){display:none!important}#print-document{display:block!important;position:static!important}#print-document *{box-sizing:border-box}.report-paper{font:11pt/1.45 Arial,sans-serif;color:#202020;max-width:none;width:auto;padding:0!important;margin:0!important}.report-paper h1{font-size:19pt}.report-paper h2{font-size:13pt;margin-top:16pt;color:#111}.report-paper .report-table{width:100%;border-collapse:collapse}.report-paper .report-table th,.report-paper .report-table td{border:1px solid #bbb;padding:5px 7px;font-size:9pt}.report-paper .report-table th{background:#f4f4f4!important}.report-paper .report-text{white-space:pre-wrap;overflow-wrap:anywhere}.report-paper .report-row{margin:8px 0}.report-paper .report-section{break-inside:avoid}.report-paper a{text-decoration:none;color:#202020}@page{size:A4;margin:16mm}}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.btn:disabled{opacity:.66;cursor:wait}
+/* Prevent intrinsic widths of the document illustration and comparison table
+   from stretching the mobile grid beyond the viewport. */
+.hero-inner,.layout{min-width:0}.hero-copy,.hero-visual{min-width:0}.compare-table-scroller{max-width:100%}
+@media(max-width:850px){.hero-inner,.layout{grid-template-columns:minmax(0,1fr)}.hero-visual{overflow:visible}}
+@media(max-width:600px){.hero{overflow:hidden}.hero h1{overflow-wrap:break-word}.hero-visual{width:100%}}
+/* The rating matrix is intentionally horizontally scrollable on narrow screens,
+   while the rest of the page must never acquire a horizontal scrollbar. */
+@media(max-width:650px){html,body{max-width:100%;overflow-x:clip}}
+
+</style>
+  <script>
+'use strict';
+
+// Практична робота №3 · ТКОІ. Всі дані зберігаються локально в браузері.
+const STORAGE_KEY = 'tkoi-practice-3-v1';
+const editors = ['Microsoft Word', 'Google Docs', 'LibreOffice Writer', 'ONLYOFFICE'];
+const criteria = [
+  'Форматування і стилі',
+  'Спільне редагування',
+  'Автономна робота',
+  'Сумісність форматів',
+  'Експорт PDF',
+  'Доступність та вартість'
+];
+const scenarios = {
+  technical: 'Фахівець з електронних комунікацій: підготовка технічного звіту з таблицями, схемами та контрольованими версіями',
+  education: 'Викладач і навчальна команда: спільне редагування методичних рекомендацій',
+  media: 'Контент-команда: дистанційне погодження тексту рекламної кампанії'
+};
+const questions = [
+  { q: 'Який формат доцільно використовувати для передачі фінальної версії документа зі стабільним макетом?', a: ['TXT', 'PDF', 'CSV'], correct: 1, why: 'PDF призначений для поширення готового документа зі збереженням його вигляду.' },
+  { q: 'Для чого в текстовому редакторі використовують стилі заголовків?', a: ['Лише для зміни кольору', 'Для структурованого оформлення та автоматичного змісту', 'Для шифрування файлу'], correct: 1, why: 'Стилі забезпечують однакове оформлення розділів і допомагають створювати навігацію та зміст.' },
+  { q: 'Що допомагає бачити запропоновані колегами правки?', a: ['Режим відстеження змін / пропозицій', 'Зміна масштабу', 'Колір сторінки'], correct: 0, why: 'Відстеження змін або режим пропозицій показує внесені правки та дозволяє їх приймати або відхиляти.' },
+  { q: 'Який показник особливо важливий під час вибору редактора для спільної дистанційної роботи?', a: ['Кількість шрифтів', 'Наявність одночасного редагування й коментарів', 'Колір піктограми редактора'], correct: 1, why: 'Для команди ключові оперативне співавторство, коментарі та контроль доступу.' },
+  { q: 'Який з форматів є відкритим стандартом текстових документів?', a: ['ODT', 'EXE', 'MP3'], correct: 0, why: 'ODT — OpenDocument Text, відкритий формат для текстових документів.' },
+  { q: 'Чому після перенесення DOCX між різними редакторами слід перевірити таблиці й відступи?', a: ['Тому що PDF завжди видаляє картинки', 'Через можливі відмінності в інтерпретації форматування', 'Тому що DOCX не може містити таблиць'], correct: 1, why: 'Редактори можуть дещо відрізнятися у відображенні складного форматування, тому макет потрібно перевіряти.' }
+];
+
+const $ = id => document.getElementById(id);
+const text = id => ($(id)?.value || '').trim();
+const scoreKey = (r, c) => `score-${r}-${c}`;
+let quizChecked = false;
+let toastTimer;
+
+function safeHtml(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+function plural(n, one, few, many){ const p=n%10, q=n%100; return q>=11&&q<=14?many:p===1?one:p>=2&&p<=4?few:many; }
+function toast(message){ const box=$('toast'); box.textContent=message;box.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>box.classList.remove('show'),2800); }
+
+function buildScoringTable(){
+  $('score-body').innerHTML = criteria.map((crit, r) => `<tr><td>${safeHtml(crit)}</td>${editors.map((editor,c)=>`<td><label class="sr-only" for="${scoreKey(r,c)}">${safeHtml(crit)} — ${safeHtml(editor)}</label><select id="${scoreKey(r,c)}" class="score-select" aria-label="${safeHtml(crit)}: ${safeHtml(editor)}"><option value="">—</option>${[1,2,3,4,5].map(x=>`<option value="${x}">${x}</option>`).join('')}</select></td>`).join('')}</tr>`).join('');
+  document.querySelectorAll('.score-select').forEach(el=>el.addEventListener('change',()=>{save();renderScores();updateCompletion();}));
+}
+
+function buildQuiz(){
+  $('quiz-list').innerHTML = questions.map((item, i) => `<div class="quiz-item" id="quiz-${i}"><h3><span class="quiz-num">${String(i+1).padStart(2,'0')}</span><span>${safeHtml(item.q)}</span></h3><div class="quiz-answers">${item.a.map((a,j)=>`<label class="quiz-answer"><input type="radio" name="question-${i}" value="${j}"><span>${safeHtml(a)}</span></label>`).join('')}</div><p class="quiz-feedback" id="feedback-${i}"></p></div>`).join('');
+  document.querySelectorAll('input[name^="question-"]').forEach(el=>el.addEventListener('change',()=>{quizChecked=false;save();clearQuizMarkings();updateCompletion();}));
+}
+
+function getScores(){ return criteria.map((_,r)=>editors.map((_,c)=>{const v=$(scoreKey(r,c)).value;return v?Number(v):null;})); }
+function getTotals(){ const scores=getScores();return editors.map((editor,c)=>({name:editor,done:scores.filter(row=>row[c]!==null).length,sum:scores.reduce((acc,row)=>acc+(row[c]||0),0)})); }
+function renderScores(){
+  const totals=getTotals();
+  $('result-bars').innerHTML=totals.map((t)=>`<div class="bar-item"><div class="bar-label"><span>${safeHtml(t.name)}</span><span class="bar-value">${t.done===0?'—':`${t.sum} / 30`}</span></div><div class="bar-track"><span style="width:${Math.round(t.sum/30*100)}%"></span></div></div>`).join('');
+  const complete=totals.every(t=>t.done===criteria.length);
+  if(complete){const max=Math.max(...totals.map(t=>t.sum));const winners=totals.filter(t=>t.sum===max).map(t=>t.name);$('comparison-insight').textContent=`За твоєю оцінкою ${winners.length===1?'найвищий результат отримав':'найвищі результати отримали'} ${winners.join(' та ')} (${max} із 30). Порівняй цей результат із вимогами кейсу.`;}
+  else{$('comparison-insight').textContent=`Заповнено ${totals.reduce((a,t)=>a+t.done,0)} із 24 оцінок. Підсумок остаточний після заповнення всієї таблиці.`;}
+}
+function getQuizAnswers(){ return questions.map((_,i)=>{const el=document.querySelector(`input[name="question-${i}"]:checked`);return el?Number(el.value):null;}); }
+function quizResult(){const answers=getQuizAnswers();return {answered:answers.filter(x=>x!==null).length,correct:answers.filter((x,i)=>x===questions[i].correct).length};}
+function clearQuizMarkings(){document.querySelectorAll('.quiz-item').forEach(el=>el.classList.remove('checked','correct','incorrect'));$('quiz-summary').textContent='';}
+function checkQuiz(){
+  const answers=getQuizAnswers();const stats=quizResult();
+  if(stats.answered<questions.length){toast(`Дай відповідь на всі ${questions.length} запитань (зараз ${stats.answered}).`);return;}
+  quizChecked=true;
+  answers.forEach((value,i)=>{const box=$(`quiz-${i}`);const good=value===questions[i].correct;box.classList.add('checked');box.classList.toggle('correct',good);box.classList.toggle('incorrect',!good);$(`feedback-${i}`).textContent=(good?'Правильно. ':'Потрібно виправити. ')+questions[i].why;});
+  $('quiz-summary').textContent=`${stats.correct} із ${questions.length} — ${Math.round(stats.correct/questions.length*100)}% правильних`;
+  save();updateCompletion();
+}
+
+function collectData(){
+  const fields={};document.querySelectorAll('[data-save]').forEach(el=>{fields[el.id]=el.value;});
+  return {fields,scores:getScores(),scenario:document.querySelector('input[name="scenario"]:checked')?.value||'technical',quiz:getQuizAnswers(),quizChecked};
+}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(collectData()));$('save-status').title='Збережено в браузері';}catch(e){$('save-status').title='Автозбереження недоступне у цьому браузері';}}
+function restore(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const data=JSON.parse(raw);
+    Object.entries(data.fields||{}).forEach(([id,val])=>{if($(id)&&typeof val==='string')$(id).value=val;});
+    (data.scores||[]).forEach((row,r)=>(row||[]).forEach((score,c)=>{const el=$(scoreKey(r,c));if(el)el.value=(score>=1&&score<=5)?String(score):'';}));
+    if(scenarios[data.scenario]){const radio=document.querySelector(`input[name="scenario"][value="${data.scenario}"]`);if(radio)radio.checked=true;}
+    (data.quiz||[]).forEach((answer,i)=>{if(answer===null)return;const radio=document.querySelector(`input[name="question-${i}"][value="${answer}"]`);if(radio)radio.checked=true;});
+    if(data.quizChecked&&quizResult().answered===questions.length)checkQuiz();
+  }catch(e){console.warn('Local restore failed:',e);}
+}
+function setCheck(id,good){const el=$(id);el.classList.toggle('done',good);el.firstElementChild.textContent=good?'✓':'○';}
+function validation(){
+  const a=text('editor-a'),b=text('editor-b');const totals=getTotals();
+  const checks={
+    'check-identity':text('student-name').length>=5&&text('student-group').length>=2,
+    'check-observations':Boolean(a&&b&&a!==b&&text('test-results').length>=40),
+    'check-scores':totals.every(x=>x.done===criteria.length),
+    'check-case':Boolean(text('recommend-editor')&&text('priority')&&text('case-reason').length>=45),
+    'check-conclusion':text('conclusion').length>=80
+  };
+  return checks;
+}
+function updateCompletion(){
+  const checks=validation();Object.entries(checks).forEach(([id,good])=>setCheck(id,good));
+  const identity=(text('student-name')&&text('student-group'))?1:0;
+  const selectedEditors=(text('editor-a')&&text('editor-b')&&text('editor-a')!==text('editor-b'))?1:0;
+  const obs=Math.min(1,text('test-results').length/40);
+  const scores=getTotals().reduce((n,t)=>n+t.done,0)/24;
+  const casePart=(Boolean(text('recommend-editor'))+Boolean(text('priority'))+Math.min(1,text('case-reason').length/45))/3;
+  const conclusion=Math.min(1,text('conclusion').length/80);
+  const quiz=quizResult().answered/questions.length;
+  const progress=Math.round((identity+selectedEditors+obs+scores+casePart+conclusion+quiz)/7*100);
+  $('progress-value').textContent=`${progress}%`;$('completion-meter').style.width=`${progress}%`;
+}
+function handleScroll(){const max=document.documentElement.scrollHeight-window.innerHeight;$('scroll-progress').style.width=`${max>0?Math.min(100,100*window.scrollY/max):0}%`;}
+function updateNav(){const items=[...document.querySelectorAll('.side-link')];let current='goal';for(const link of items){const sec=document.querySelector(link.getAttribute('href'));if(sec&&sec.getBoundingClientRect().top<180)current=sec.id;}items.forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+current));}
+
+function getReportData(){
+  return {
+    name:text('student-name'),group:text('student-group'),date:new Intl.DateTimeFormat('uk-UA',{dateStyle:'long'}).format(new Date()),
+    first:text('editor-a'),second:text('editor-b'),observations:text('test-results'),artifacts:text('artifacts'),
+    scores:getScores(),totals:getTotals(),
+    scenario:scenarios[document.querySelector('input[name="scenario"]:checked')?.value||'technical'],
+    recommended:text('recommend-editor'),priority:text('priority'),reason:text('case-reason'),conclusion:text('conclusion'),
+    quiz:quizResult(),answers:getQuizAnswers()
+  };
+}
+function checkReport(){
+  const checks=validation();const missing=[];
+  if(!checks['check-identity'])missing.push('заповни ПІБ та групу');
+  if(!checks['check-observations'])missing.push('обери два різні редактори й запиши щонайменше 40 символів спостережень');
+  if(!checks['check-scores'])missing.push('заповни всі 24 оцінки у таблиці');
+  if(!checks['check-case'])missing.push('заповни професійний кейс і наведи аргументи');
+  if(!checks['check-conclusion'])missing.push('доповни загальний висновок (щонайменше 80 символів)');
+  const msg=$('export-message');
+  if(missing.length){msg.classList.add('error');msg.textContent='Для повного звіту: '+missing.join('; ')+'.';toast('Не всі обов’язкові поля заповнені');return false;}
+  msg.classList.remove('error');msg.textContent='Готово. Формую персональний звіт…';return true;
+}
+function cleanFilename(s){return s.normalize('NFKD').replace(/[\\/:*?"<>|]+/g,'').trim().replace(/\s+/g,'_').slice(0,64)||'student';}
+
+/* Незалежний від мережі експорт у PDF. Кожна сторінка звіту рендериться Canvas
+   з підтримкою кирилиці, після чого упаковується в стандартний PDF 1.4.
+   PDF не потребує сторонніх бібліотек і працює навіть при відкритті з файлу. */
+class PdfCanvas {
+  constructor(){this.pages=[];this.W=595;this.H=842;this.mx=44;this.bottom=790;this.newPage();}
+  newPage(){
+    this.canvas=document.createElement('canvas');this.canvas.width=1190;this.canvas.height=1684;
+    this.ctx=this.canvas.getContext('2d',{alpha:false});if(!this.ctx)throw Error('Canvas 2D недоступний');
+    this.ctx.scale(2,2);this.ctx.fillStyle='#ffffff';this.ctx.fillRect(0,0,this.W,this.H);
+    this.pages.push(this.canvas);this.y=69;
+    const c=this.ctx;c.fillStyle='#7766e8';c.fillRect(this.mx,30,31,4);this.writeAt('ТКОІ  /  ПРАКТИЧНА РОБОТА № 3',this.mx,44,9,'#65738b',true);
+    c.strokeStyle='#e5e8f0';c.beginPath();c.moveTo(this.mx,56);c.lineTo(this.W-this.mx,56);c.stroke();
+  }
+  font(size=10,bold=false){this.ctx.font=`${bold?'700':'400'} ${size}px Arial, "DejaVu Sans", sans-serif`;}
+  writeAt(str,x,y,size=10,color='#25324d',bold=false){this.font(size,bold);this.ctx.fillStyle=color;this.ctx.fillText(String(str),x,y);}
+  ensure(needed=18){if(this.y+needed>this.bottom)this.newPage();}
+  lines(str,width,size=10,bold=false){
+    this.font(size,bold);const paragraphs=String(str==null?'—':str).replace(/\r/g,'').split('\n');const lines=[];
+    for(const paragraph of paragraphs){if(!paragraph.trim()){lines.push('');continue;}
+      let line='';for(const word of paragraph.split(/\s+/)){const trial=line?line+' '+word:word;
+        if(this.ctx.measureText(trial).width>width&&line){lines.push(line);line=word;}else{line=trial;}
+        if(this.ctx.measureText(line).width>width){let part='';for(const ch of line){if(this.ctx.measureText(part+ch).width>width&&part){lines.push(part);part=ch;}else part+=ch;}line=part;}
+      }if(line)lines.push(line);
+    }return lines;
+  }
+  write(str,{size=10,bold=false,color='#38445b',indent=0,space=8,line=1.56}={}){
+    const lineHeight=size*line;const width=this.W-this.mx*2-indent;
+    const rows=this.lines(String(str||'—'),width,size,bold);
+    for(const row of rows){this.ensure(lineHeight+1);if(row)this.writeAt(row,this.mx+indent,this.y+size,size,color,bold);this.y+=lineHeight;}
+    this.y+=space;
+  }
+  title(main,sub=''){
+    this.ensure(84);this.write(main,{size:23,bold:true,color:'#17243d',line:1.15,space:5});if(sub)this.write(sub,{size:11,color:'#667287',space:13});
+    this.ctx.fillStyle='#7766e8';this.ctx.fillRect(this.mx,this.y,65,2);this.y+=21;
+  }
+  section(label){this.ensure(36);this.y+=6;this.write(label,{size:12.5,bold:true,color:'#1b2844',space:9,line:1.25});}
+  kvt(label,value){this.ensure(28);this.write(`${label}: ${value||'—'}`,{size:10.2,space:3});}
+  table(head,rows,weights){
+    const avail=this.W-2*this.mx;const weightsSum=weights.reduce((a,b)=>a+b,0);const widths=weights.map(x=>avail*x/weightsSum);
+    const paint=(cells,isHead=false,rowIndex=0)=>{
+      const size=isHead?8.8:8.7;const line=12;const cellLines=cells.map((s,i)=>this.lines(String(s??'—'),widths[i]-12,size,isHead));
+      const h=Math.max(26,...cellLines.map(x=>x.length*line+12));this.ensure(h+2);const left=this.mx;let x=left;
+      cells.forEach((_,i)=>{this.ctx.fillStyle=isHead?'#eeeafd':rowIndex%2===0?'#fff':'#f8f9fc';this.ctx.fillRect(x,this.y,widths[i],h);this.ctx.strokeStyle='#dce0ea';this.ctx.lineWidth=.6;this.ctx.strokeRect(x,this.y,widths[i],h);
+        cellLines[i].forEach((txt,j)=>this.writeAt(txt,x+6,this.y+13+j*line,size,isHead?'#3c3b70':'#3b4761',isHead));x+=widths[i];
+      });this.y+=h;
+    };
+    if(this.y+45>this.bottom)this.newPage();paint(head,true);
+    rows.forEach((row,i)=>{const estimated=Math.max(...row.map((s,k)=>this.lines(String(s??'—'),widths[k]-12,8.7).length))*12+12;if(this.y+estimated>this.bottom){this.newPage();paint(head,true);}paint(row,false,i);});
+    this.y+=9;
+  }
+  bullet(s){this.ensure(17);this.write('• '+s,{size:9.8,space:3,indent:5});}
+  finish(){const total=this.pages.length;this.pages.forEach((canvas,i)=>{const c=canvas.getContext('2d');c.fillStyle='#e2e5ee';c.fillRect(44,809,507,1);c.font='9px Arial';c.fillStyle='#8b94a6';c.fillText('Практична робота №3 · Порівняльний аналіз текстових редакторів',44,823);c.textAlign='right';c.fillText(`${i+1} / ${total}`,551,823);c.textAlign='left';});}
+}
+function buildPdfDocument(data){
+  const p=new PdfCanvas();p.title('ЗВІТ', 'про виконання практичної роботи №3');
+  p.write('Порівняльний аналіз функціональних можливостей сучасних текстових редакторів у контексті професійної діяльності',{size:12.5,bold:true,color:'#24314d',line:1.45,space:17});
+  p.kvt('Дисципліна','ТКОІ');p.kvt('Студент(ка)',data.name);p.kvt('Група',data.group);p.kvt('Дата формування',data.date);
+  p.section('1. Мета роботи');p.write('Порівняти функції сучасних текстових редакторів, перевірити способи оформлення та рецензування професійних документів і обґрунтовано обрати редактор для заданої ситуації.');
+  p.section('2. Виконані практичні дії');p.kvt('Редактори для тестування',`${data.first} та ${data.second}`);
+  p.write('В обох редакторах передбачалося створити документ «План оновлення Wi-Fi у навчальному корпусі», застосувати заголовок, список, таблицю, колонтитул, гіперпосилання, випробувати коментарі та експорт PDF.',{size:9.6});
+  p.write('Спостереження студента:',{bold:true,size:10.1,space:3});p.write(data.observations,{size:10,line:1.53,space:10});
+  if(data.artifacts){p.write('Файли / посилання на створені документи:',{bold:true,size:9.7,space:3});p.write(data.artifacts,{size:9.2,color:'#56627b'});}
+  p.section('3. Таблиця порівняльного аналізу');p.write('Оцінювання за 5-бальною шкалою: 1 — обмежено, 5 — відмінно. Це суб’єктивні оцінки автора звіту, а не офіційний рейтинг продуктів.',{size:8.8,color:'#667287'});
+  p.table(['Критерій','Word','Docs','Writer','ONLYOFFICE'],criteria.map((crit,r)=>[crit,...data.scores[r].map(x=>String(x??'—'))]),[2.1,.7,.7,.8,.95]);
+  p.table(['Редактор','Балів / 30','Заповнено критеріїв'],data.totals.map(x=>[x.name,String(x.sum),`${x.done} із 6`]),[2.1,1,1.25]);
+  const high=Math.max(...data.totals.map(x=>x.sum));const leaders=data.totals.filter(x=>x.sum===high).map(x=>x.name);
+  p.write(`Найвищий сумарний бал за оцінками студента: ${leaders.join(' та ')} (${high} із 30).`,{bold:true,size:9.4});
+  p.section('4. Професійний кейс');p.write(`Ситуація: ${data.scenario}`,{size:9.9});
+  p.kvt('Рекомендований редактор',data.recommended);p.kvt('Ключовий критерій',data.priority);
+  p.write('Обґрунтування:',{bold:true,space:3});p.write(data.reason,{size:10});
+  p.section('5. Підсумковий висновок');p.write(data.conclusion,{size:10.3,line:1.55});
+  p.section('6. Самоперевірка');p.kvt('Правильні відповіді',`${data.quiz.correct} із ${questions.length}`);p.kvt('Відповіли на запитання',`${data.quiz.answered} із ${questions.length}`);
+  if(data.quiz.answered<questions.length)p.write('Зверніть увагу: тест для самоперевірки заповнений не повністю.',{size:9.2,color:'#a55f60'});
+  p.section('7. Критерії оцінювання (максимум 12 балів)');
+  p.table(['Складова','Максимум'],[['Оформлення двох документів','3 б.'],['Практичні спостереження','3 б.'],['Порівняльний аналіз та кейс','4 б.'],['Висновок і самоперевірка','2 б.']],[4,1]);
+  p.write('Підсумкову навчальну оцінку виставляє викладач після перевірки фактичного виконання та наданих матеріалів.',{size:8.9,color:'#768194'});
+  p.finish();return p.pages;
+}
+
+function uint8Concat(parts){const size=parts.reduce((sum,a)=>sum+a.length,0);const result=new Uint8Array(size);let offset=0;for(const part of parts){result.set(part,offset);offset+=part.length;}return result;}
+function makePdf(canvasPages){
+  const enc=new TextEncoder();const ascii=s=>enc.encode(s);const objects=[null,'',''];const kids=[];
+  function add(item){objects.push(item);return objects.length-1;}
+  for(const canvas of canvasPages){
+    const b64=canvas.toDataURL('image/jpeg',.88).split(',')[1];const binary=atob(b64);const jpeg=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)jpeg[i]=binary.charCodeAt(i);
+    const img=add(uint8Concat([ascii(`<< /Type /XObject /Subtype /Image /Width ${canvas.width} /Height ${canvas.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpeg.length} >>\nstream\n`),jpeg,ascii('\nendstream')]));
+    const commands=ascii(`q\n595 0 0 842 0 0 cm\n/Im${img} Do\nQ\n`);
+    const contents=add(uint8Concat([ascii(`<< /Length ${commands.length} >>\nstream\n`),commands,ascii('endstream')]));
+    const page=add(ascii(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /XObject << /Im${img} ${img} 0 R >> >> /Contents ${contents} 0 R >>`));
+    kids.push(page);
+  }
+  objects[1]=ascii('<< /Type /Catalog /Pages 2 0 R >>');
+  objects[2]=ascii(`<< /Type /Pages /Kids [${kids.map(id=>id+' 0 R').join(' ')}] /Count ${kids.length} >>`);
+  const parts=[ascii('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n')];const offsets=[0];let length=parts[0].length;
+  for(let i=1;i<objects.length;i++){
+    offsets[i]=length;const content=typeof objects[i]==='string'?ascii(objects[i]):objects[i];
+    const seg=uint8Concat([ascii(`${i} 0 obj\n`),content,ascii('\nendobj\n')]);parts.push(seg);length+=seg.length;
+  }
+  const xrefStart=length;let xref=`xref\n0 ${objects.length}\n0000000000 65535 f \n`;
+  for(let i=1;i<objects.length;i++)xref+=`${String(offsets[i]).padStart(10,'0')} 00000 n \n`;
+  xref+=`trailer\n<< /Size ${objects.length} /Root 1 0 R >>\nstartxref\n${xrefStart}\n%%EOF`;
+  parts.push(ascii(xref));return new Blob(parts,{type:'application/pdf'});
+}
+function downloadPdf(){
+  if(!checkReport())return;
+  const button=$('download-pdf');const label=button.innerHTML;
+  button.disabled=true;button.textContent='Формуємо PDF…';
+  try{
+    const data=getReportData();const canvases=buildPdfDocument(data);const blob=makePdf(canvases);
+    const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=`Практична_3_ТКОІ_${cleanFilename(data.name)}.pdf`;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),12000);
+    $('export-message').textContent=`PDF сформовано: ${canvases.length} ${plural(canvases.length,'сторінка','сторінки','сторінок')} · ${(blob.size/1024/1024).toFixed(1)} МБ.`;toast('PDF-звіт збережено');
+  }catch(err){console.error(err);$('export-message').classList.add('error');$('export-message').textContent='Не вдалося створити PDF автоматично. Скористайся кнопкою «Друк / Зберегти як PDF».';toast('Скористайся резервним способом збереження');}
+  finally{button.disabled=false;button.innerHTML=label;}
+}
+function preparePrintDocument(data){
+  $('print-document').innerHTML=`<div class="report-paper"><h1>ЗВІТ</h1><p>про виконання практичної роботи №3 з дисципліни ТКОІ</p><h2>Порівняльний аналіз функціональних можливостей сучасних текстових редакторів у контексті професійної діяльності</h2><div class="report-row"><b>Студент(ка):</b> ${safeHtml(data.name)}</div><div class="report-row"><b>Група:</b> ${safeHtml(data.group)}</div><div class="report-row"><b>Дата:</b> ${safeHtml(data.date)}</div><div class="report-section"><h2>1. Мета роботи</h2><p>Порівняти сучасні текстові редактори та обґрунтувати вибір інструмента для професійних задач.</p></div><div class="report-section"><h2>2. Практична частина</h2><p><b>Обрані редактори:</b> ${safeHtml(data.first)} та ${safeHtml(data.second)}.</p><p><b>Тестовий документ:</b> «План оновлення Wi-Fi у навчальному корпусі».</p><p><b>Спостереження:</b></p><p class="report-text">${safeHtml(data.observations)}</p>${data.artifacts?`<p><b>Файли / посилання:</b> <span class="report-text">${safeHtml(data.artifacts)}</span></p>`:''}</div><div class="report-section"><h2>3. Порівняльна таблиця (оцінка 1–5)</h2><table class="report-table"><thead><tr><th>Критерій</th>${editors.map(x=>`<th>${safeHtml(x)}</th>`).join('')}</tr></thead><tbody>${criteria.map((crit,r)=>`<tr><td>${safeHtml(crit)}</td>${data.scores[r].map(x=>`<td>${x??'—'}</td>`).join('')}</tr>`).join('')}<tr><th>Разом / 30</th>${data.totals.map(x=>`<th>${x.sum}</th>`).join('')}</tr></tbody></table></div><div class="report-section"><h2>4. Професійний кейс</h2><p>${safeHtml(data.scenario)}</p><p><b>Редактор:</b> ${safeHtml(data.recommended)}. <b>Критерій:</b> ${safeHtml(data.priority)}.</p><p class="report-text">${safeHtml(data.reason)}</p></div><div class="report-section"><h2>5. Висновок</h2><p class="report-text">${safeHtml(data.conclusion)}</p></div><div class="report-section"><h2>6. Самоперевірка</h2><p>${data.quiz.correct} правильних відповідей із ${questions.length}, заповнено ${data.quiz.answered} запитань.</p></div><div class="report-section"><h2>7. Критерії оцінювання</h2><p>Оформлення документів — 3 б.; спостереження — 3 б.; порівняння та кейс — 4 б.; висновок і самоперевірка — 2 б.</p><p><small>Оцінку виставляє викладач.</small></p></div></div>`;
+}
+function printReport(){if(!checkReport())return;preparePrintDocument(getReportData());$('print-document').setAttribute('aria-hidden','false');requestAnimationFrame(()=>window.print());}
+function init(){
+  buildScoringTable();buildQuiz();restore();renderScores();updateCompletion();
+  document.querySelectorAll('[data-save]').forEach(el=>el.addEventListener('input',()=>{save();updateCompletion();}));
+  document.querySelectorAll('[data-save]').forEach(el=>el.addEventListener('change',()=>{save();updateCompletion();}));
+  document.querySelectorAll('input[name="scenario"]').forEach(el=>el.addEventListener('change',()=>{save();updateCompletion();}));
+  $('check-quiz').addEventListener('click',checkQuiz);
+  $('download-pdf').addEventListener('click',downloadPdf);
+  $('print-report').addEventListener('click',printReport);
+  $('copy-source').addEventListener('click',async()=>{
+    const t=$('source-text').textContent;
+    try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);}else{const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();if(!document.execCommand('copy'))throw Error('clipboard');ta.remove();}toast('Текст скопійовано');}
+    catch(e){toast('Виділи текст і скопіюй його вручну');}
+  });
+  $('reset-all').addEventListener('click',()=>{
+    if(!confirm('Очистити всі оцінки, відповіді та дані студента на цьому пристрої?'))return;
+    try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+    document.querySelectorAll('[data-save]').forEach(el=>el.value='');document.querySelectorAll('.score-select').forEach(el=>el.value='');
+    document.querySelectorAll('input[name^="question-"]').forEach(el=>el.checked=false);document.querySelector('input[name="scenario"][value="technical"]').checked=true;quizChecked=false;clearQuizMarkings();renderScores();updateCompletion();$('export-message').textContent='';toast('Відповіді очищено');
+  });
+  window.addEventListener('scroll',()=>{handleScroll();updateNav();},{passive:true});window.addEventListener('afterprint',()=>{$('print-document').setAttribute('aria-hidden','true');});handleScroll();updateNav();
+}
+document.addEventListener('DOMContentLoaded',init);
+
+</script>
+</head>
+<body>
+  <div class="progress-track" aria-hidden="true"><span id="scroll-progress"></span></div>
+  <header class="site-header">
+    <a class="brand" href="#start" aria-label="На початок практичної роботи"><span class="brand-mark">T<span>3</span></span><span>ТКОІ<span class="brand-sub">інтерактивна практична</span></span></a>
+    <nav class="head-nav" aria-label="Швидка навігація"><a href="#theory">Теорія</a><a href="#exercise">Завдання</a><a href="#report">Звіт</a></nav>
+    <span class="save-status" id="save-status"><span class="status-dot"></span>Автозбереження</span>
+  </header>
+
+  <main>
+    <section class="hero" id="start" aria-labelledby="hero-title">
+      <div class="hero-inner wrap">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> ПРАКТИЧНА РОБОТА № 03 <span class="eyebrow-sep">/</span> ТКОІ</div>
+          <h1 id="hero-title">Сучасні текстові редактори: <em>який обрати для роботи?</em></h1>
+          <p class="hero-lead">Порівняй Microsoft Word, Google Docs, LibreOffice Writer та ONLYOFFICE. Перевір функції на практиці, аргументуй свій вибір і сформуй готовий PDF-звіт.</p>
+          <div class="hero-actions"><a class="btn primary" href="#exercise">Розпочати роботу <span aria-hidden="true">↗</span></a><a class="btn ghost" href="#report">Перейти до звіту <span aria-hidden="true">↘</span></a></div>
+          <div class="hero-facts"><span><span class="fact-icon">◷</span> 90 хв</span><span><span class="fact-icon">▦</span> 4 редактори</span><span><span class="fact-icon">◎</span> 12 балів</span><span><span class="fact-icon">⇩</span> PDF-звіт</span></div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="float-pill p1"><span>✦</span> Спільне редагування</div>
+          <div class="float-pill p2"><span>↺</span> Історія версій</div>
+          <div class="float-pill p3"><span>⇩</span> Експорт PDF</div>
+          <div class="editor-window">
+            <div class="window-top"><div class="traffic"><i></i><i></i><i></i></div><span>document_comparison.docx</span><div class="window-dots">···</div></div>
+            <div class="toolbar-faux"><span>Заголовок 1</span><b>B</b><i>I</i><u>U</u><span class="toolbar-lines">≡</span><span>☷</span><span>◧</span></div>
+            <div class="page-faux"><span class="faux-kicker">ПРОФЕСІЙНИЙ ДОКУМЕНТ</span><div class="faux-h1"></div><div class="faux-h1 short"></div><div class="faux-line"></div><div class="faux-line"></div><div class="faux-line half"></div><div class="faux-table"><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="faux-line"></div><div class="faux-line half"></div></div>
+            <div class="cursor-badge">Ви <span class="cursor-arrow">↖</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap layout">
+      <aside class="sidebar" aria-label="Зміст роботи">
+        <div class="side-box"><div class="side-label">НАВІГАЦІЯ</div><a class="side-link active" href="#goal"><span>01</span> Мета та результати</a><a class="side-link" href="#theory"><span>02</span> Коротка теорія</a><a class="side-link" href="#editors"><span>03</span> Огляд редакторів</a><a class="side-link" href="#exercise"><span>04</span> Практичні завдання</a><a class="side-link" href="#comparison"><span>05</span> Таблиця порівняння</a><a class="side-link" href="#case"><span>06</span> Професійний кейс</a><a class="side-link" href="#quiz"><span>07</span> Самоперевірка</a><a class="side-link" href="#report"><span>08</span> PDF-звіт</a></div>
+        <div class="sidebar-progress"><div class="sidebar-progress-row"><span>Заповнення роботи</span><b id="progress-value">0%</b></div><div class="meter"><span id="completion-meter"></span></div><p>Результати зберігаються лише в цьому браузері.</p></div>
+      </aside>
+      <div class="content">
+        <section class="section" id="goal"><div class="section-heading"><div><div class="section-kicker">01 / ПОЧАТОК</div><h2>Мета практичної роботи</h2></div><span class="number-ghost">01</span></div><p class="section-desc">Навчитися обґрунтовано обирати текстовий редактор відповідно до професійних завдань, порівнювати доступні інструменти та фіксувати результати дослідження.</p>
+          <div class="outcome-grid"><article class="outcome"><span class="outcome-icon">01</span><b>Аналізувати</b><p>Порівнювати інструменти форматування, спільної роботи та експорту.</p></article><article class="outcome"><span class="outcome-icon">02</span><b>Перевіряти</b><p>Тестувати однакові дії щонайменше у двох редакторах.</p></article><article class="outcome"><span class="outcome-icon">03</span><b>Обґрунтовувати</b><p>Обирати рішення для реального професійного сценарію.</p></article></div>
+          <div class="info-line"><span class="info-icon">ℹ</span><div><b>Що потрібно для виконання?</b> Браузер, доступ до двох текстових редакторів на вибір та 90 хвилин. Платна підписка не обов'язкова: можна працювати з Google Docs, LibreOffice Writer, ONLYOFFICE або доступною версією Word.</div></div>
+        </section>
+
+        <section class="section" id="theory"><div class="section-heading"><div><div class="section-kicker">02 / ЗНАННЯ</div><h2>Коротка теорія</h2></div><span class="number-ghost">02</span></div><p class="section-desc">Редактор обирають не лише за кількістю функцій. Значення мають умови роботи, тип документа, вимоги до сумісності та захисту інформації.</p>
+          <div class="concept-list"><details open><summary><span class="concept-no">01</span><span>Настільний і хмарний редактор</span><span class="chev">⌄</span></summary><div class="details-content">Настільні застосунки зазвичай зручні для автономної роботи, складного форматування та великих документів. Хмарні — для спільного доступу, коментарів і редагування в браузері. Деякі продукти мають обидва режими; функції залежать від конкретної версії.</div></details><details><summary><span class="concept-no">02</span><span>Спільна робота та контроль змін</span><span class="chev">⌄</span></summary><div class="details-content">Спільне редагування — кілька учасників одночасно працюють над документом. Коментарі, режим пропозицій, відстеження змін та історія версій допомагають узгоджувати правки. Порівнюй не лише наявність функції, а й те, наскільки легко її застосувати.</div></details><details><summary><span class="concept-no">03</span><span>Стилі, структура й професійне оформлення</span><span class="chev">⌄</span></summary><div class="details-content">Стилі заголовків, автоматичний зміст, таблиці, нумерація, підписи до рисунків, колонтитули та перевірка правопису пришвидшують створення технічного звіту, інструкції чи службового документа. Послідовне використання стилів робить документ доступнішим для навігації.</div></details><details><summary><span class="concept-no">04</span><span>Формати DOCX, ODT і PDF</span><span class="chev">⌄</span></summary><div class="details-content"><b>DOCX</b> — поширений редагований формат; <b>ODT</b> — відкритий формат текстових документів; <b>PDF</b> — переважно для розповсюдження завершеної версії зі стабільним макетом. Під час перенесення між редакторами складні таблиці та відступи іноді змінюються, тому сумісність потрібно тестувати.</div></details><details><summary><span class="concept-no">05</span><span>Безпека, доступність і вартість</span><span class="chev">⌄</span></summary><div class="details-content">Для внутрішніх технічних документів враховують контроль доступу, місце зберігання файлів і політики організації. Доступність означає підтримку клавіатурної навігації, структурованих заголовків та допоміжних технологій. Умови ліцензування і набір функцій можуть відрізнятися між безкоштовними та платними редакціями.</div></details></div>
+        </section>
+
+        <section class="section" id="editors"><div class="section-heading"><div><div class="section-kicker">03 / ІНСТРУМЕНТИ</div><h2>Чотири редактори для дослідження</h2></div><span class="number-ghost">03</span></div><p class="section-desc">Картки містять орієнтири для дослідження. Остаточні оцінки в таблиці нижче ти виставиш самостійно за результатами тестування.</p>
+          <div class="editor-grid">
+            <article class="editor-card"><div class="editor-card-top"><span class="product-logo word">W</span><span class="editor-chip">Десктоп + веб</span></div><h3>Microsoft Word</h3><p>Зручний для технічних звітів, складного макетування, рецензування та роботи з DOCX.</p><div class="editor-features"><span>Стилі й зміст</span><span>Відстеження змін</span><span>Співавторство*</span></div><a target="_blank" rel="noopener noreferrer" href="https://www.microsoft.com/microsoft-365/word">Офіційний сайт <span>↗</span></a></article>
+            <article class="editor-card"><div class="editor-card-top"><span class="product-logo docs">▤</span><span class="editor-chip">Хмарний</span></div><h3>Google Docs</h3><p>Орієнтований на роботу в браузері, швидкі коментарі, історію версій і командні документи.</p><div class="editor-features"><span>Спільне редагування</span><span>Пропозиції</span><span>Історія версій</span></div><a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/">Відкрити редактор <span>↗</span></a></article>
+            <article class="editor-card"><div class="editor-card-top"><span class="product-logo writer">▣</span><span class="editor-chip">Відкритий код</span></div><h3>LibreOffice Writer</h3><p>Безплатний настільний редактор із підтримкою ODT, стилів, великої кількості елементів та експорту PDF.</p><div class="editor-features"><span>Офлайн</span><span>ODT / DOCX</span><span>Експорт PDF</span></div><a target="_blank" rel="noopener noreferrer" href="https://www.libreoffice.org/discover/writer/">Офіційний сайт <span>↗</span></a></article>
+            <article class="editor-card"><div class="editor-card-top"><span class="product-logo only">O</span><span class="editor-chip">Десктоп + веб</span></div><h3>ONLYOFFICE</h3><p>Редагування офісних документів з акцентом на сумісність, рецензування та спільну роботу у відповідних редакціях.</p><div class="editor-features"><span>DOCX</span><span>Порівняння версій</span><span>Співавторство*</span></div><a target="_blank" rel="noopener noreferrer" href="https://www.onlyoffice.com/">Офіційний сайт <span>↗</span></a></article>
+          </div><p class="footnote">* Доступність спільної роботи залежить від версії, облікового запису та способу зберігання документа.</p>
+        </section>
+
+        <section class="section" id="exercise"><div class="section-heading"><div><div class="section-kicker">04 / ПРАКТИКА</div><h2>Практичні завдання</h2></div><span class="number-ghost">04</span></div><p class="section-desc">Створи однаковий професійний документ у двох редакторах і зафіксуй помічені відмінності.</p>
+          <div class="task-card"><div class="task-head"><span class="task-num">ЗАВДАННЯ 1</span><span class="points">3 бали</span></div><h3>Підготовка документа</h3><p>Обери <b>два редактори</b>, у кожному створи новий файл із назвою <b>«План оновлення Wi-Fi у навчальному корпусі»</b>. Скопіюй вихідний текст нижче.</p>
+            <div class="source-box"><div class="source-top"><b>ВИХІДНИЙ ТЕКСТ</b><button type="button" class="mini-btn" id="copy-source">⧉ Скопіювати текст</button></div><div id="source-text">План оновлення Wi-Fi у навчальному корпусі
+
+Мета: підвищити стабільність та якість безпроводового зв'язку для студентів і викладачів.
+
+Основні етапи:
+1. Провести аудит покриття мережі.
+2. Визначити зони з найбільшим навантаженням.
+3. Підібрати точки доступу та створити графік розгортання.
+4. Перевірити швидкість, затримку та стабільність роботи після оновлення.
+
+Порівняння зон:
+Аудиторії — 6 точок доступу — високий пріоритет.
+Бібліотека — 2 точки доступу — середній пріоритет.
+Коридори — 3 точки доступу — середній пріоритет.
+
+Висновок: модернізація мережі має враховувати кількість користувачів, площу покриття й вимоги до безпеки.</div></div>
+            <div class="steps"><div class="step"><span>1</span>Застосуй стиль <b>«Заголовок 1»</b> до назви документа.</div><div class="step"><span>2</span>Перетвори етапи на нумерований список, а дані про зони — на таблицю із 3 стовпцями.</div><div class="step"><span>3</span>Додай верхній колонтитул «Практична робота №3», дату та активне посилання на сайт одного редактора.</div><div class="step"><span>4</span>За можливості додай коментар, застосуй відстеження змін або режим пропозицій.</div><div class="step"><span>5</span>Збережи документ у редагованому форматі (DOCX або ODT) та експортуй у PDF.</div></div>
+          </div>
+          <div class="task-card"><div class="task-head"><span class="task-num">ЗАВДАННЯ 2</span><span class="points">3 бали</span></div><h3>Тестування інструментів</h3><p>Для обраної пари редакторів перевір можливості та занеси спостереження в поля нижче.</p>
+            <div class="form-grid"><div class="field"><label for="editor-a">Перший редактор</label><select id="editor-a" data-save><option value="">Оберіть редактор</option><option>Microsoft Word</option><option>Google Docs</option><option>LibreOffice Writer</option><option>ONLYOFFICE</option></select></div><div class="field"><label for="editor-b">Другий редактор</label><select id="editor-b" data-save><option value="">Оберіть редактор</option><option>Microsoft Word</option><option>Google Docs</option><option>LibreOffice Writer</option><option>ONLYOFFICE</option></select></div></div>
+            <div class="field"><label for="test-results">Результати тестування (не менше 3 спостережень)</label><textarea id="test-results" data-save rows="5" placeholder="Наприклад: у редакторі А зручніше керувати стилями; у редакторі Б простіше залишати коментарі; після експорту PDF таблиця... "></textarea><span class="hint">Зазнач конкретні функції, а не лише «зручний / незручний».</span></div>
+            <div class="field"><label for="artifacts">Назви файлів або посилання на створені документи (необов’язково)</label><textarea id="artifacts" data-save rows="2" placeholder="Наприклад: WiFi_Writer.odt; WiFi_Docs — посилання на документ"></textarea><span class="hint">У Google Класі також прикріпи два створені документи або підтвердження їх виконання, якщо цього вимагає викладач.</span></div>
+          </div>
+        </section>
+
+        <section class="section" id="comparison"><div class="section-heading"><div><div class="section-kicker">05 / АНАЛІЗ</div><h2>Інтерактивна таблиця порівняння</h2></div><span class="number-ghost">05</span></div><p class="section-desc">Вистав кожному редактору від <b>1</b> до <b>5</b> балів за кожним критерієм. За можливості орієнтуйся на власне тестування, а решту оцінюй на основі теоретичного огляду.</p>
+          <div class="scale"><span><b>1</b> — обмежено</span><span><b>2</b> — базово</span><span><b>3</b> — достатньо</span><span><b>4</b> — добре</span><span><b>5</b> — відмінно</span></div>
+          <div class="compare-table-scroller"><table class="comparison-table" id="comparison-table"><thead><tr><th scope="col">Критерій</th><th scope="col"><span class="th-product word small">W</span> Word</th><th scope="col"><span class="th-product docs small">▤</span> Docs</th><th scope="col"><span class="th-product writer small">▣</span> Writer</th><th scope="col"><span class="th-product only small">O</span> ONLYOFFICE</th></tr></thead><tbody id="score-body"></tbody></table></div>
+          <div class="analysis-grid"><article class="analysis-card"><div class="analysis-heading"><b>Підсумкова оцінка</b><span>Макс. 30 балів</span></div><div id="result-bars" class="result-bars"><p class="muted">Заповни оцінки, щоб побачити результати.</p></div></article><article class="analysis-card insight"><span class="analysis-spark">✧</span><h3>Як інтерпретувати?</h3><p>Найбільша кількість балів <b>не завжди</b> означає найкращий вибір. Для командної роботи важливі спільний доступ і коментарі, а для автономного оформлення звітів — стилі, сумісність та офлайн-режим.</p><p id="comparison-insight" class="mini-insight">Оціни всі критерії, щоб отримати автоматичний підсумок.</p></article></div>
+        </section>
+
+        <section class="section" id="case"><div class="section-heading"><div><div class="section-kicker">06 / РІШЕННЯ</div><h2>Професійний кейс</h2></div><span class="number-ghost">06</span></div><p class="section-desc">Обери одну ситуацію та запропонуй оптимальний редактор із трьома аргументами.</p>
+          <div class="cases" role="group" aria-label="Професійний сценарій"><label class="case-option"><input type="radio" name="scenario" value="technical" checked><span class="case-card"><span class="case-icon">⌘</span><b>Фахівець з електронних комунікацій</b><small>Потрібно підготувати технічний звіт із таблицями, схемами та контрольованими версіями.</small></span></label><label class="case-option"><input type="radio" name="scenario" value="education"><span class="case-card"><span class="case-icon">▤</span><b>Викладач і навчальна команда</b><small>Троє викладачів одночасно редагують методичні рекомендації та залишають коментарі.</small></span></label><label class="case-option"><input type="radio" name="scenario" value="media"><span class="case-card"><span class="case-icon">✺</span><b>Контент-команда</b><small>Копірайтер, редактор і дизайнер погоджують текст рекламної кампанії дистанційно.</small></span></label></div>
+          <div class="form-grid"><div class="field"><label for="recommend-editor">Рекомендований редактор</label><select id="recommend-editor" data-save><option value="">Оберіть рішення</option><option>Microsoft Word</option><option>Google Docs</option><option>LibreOffice Writer</option><option>ONLYOFFICE</option></select></div><div class="field"><label for="priority">Найважливіший критерій</label><select id="priority" data-save><option value="">Оберіть критерій</option><option>Форматування і стилі</option><option>Спільне редагування</option><option>Автономна робота</option><option>Сумісність форматів</option><option>Експорт PDF</option><option>Доступність та вартість</option></select></div></div>
+          <div class="field"><label for="case-reason">Обґрунтування (щонайменше 3 аргументи)</label><textarea id="case-reason" data-save rows="5" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea></div>
+        </section>
+
+        <section class="section" id="quiz"><div class="section-heading"><div><div class="section-kicker">07 / ПЕРЕВІРКА</div><h2>Питання для самоперевірки</h2></div><span class="number-ghost">07</span></div><p class="section-desc">Оберіть одну правильну відповідь на кожне запитання. Перевірка автоматична й не замінює практичну частину роботи.</p>
+          <div id="quiz-list" class="quiz-list"></div><div class="quiz-actions"><button class="btn primary" type="button" id="check-quiz">Перевірити відповіді <span>✓</span></button><span id="quiz-summary" aria-live="polite"></span></div>
+        </section>
+
+        <section class="section report-section" id="report"><div class="section-heading"><div><div class="section-kicker">08 / РЕЗУЛЬТАТ</div><h2>Сформувати звіт у PDF</h2></div><span class="number-ghost">08</span></div><p class="section-desc">Заповни дані та підсумковий висновок. До PDF автоматично додадуться оцінки, результати порівняння, професійний кейс і самоперевірка.</p>
+          <div class="report-panel"><div class="report-top"><span class="pdf-stamp">PDF</span><div><b>Звіт про виконання практичної роботи №3</b><p>Файл формується на твоєму пристрої. Відповіді не передаються на сервер.</p></div></div>
+            <div class="form-grid"><div class="field"><label for="student-name">Прізвище, ім'я та по батькові <span class="required">*</span></label><input id="student-name" data-save type="text" placeholder="Наприклад: Іваненко Іван Іванович" autocomplete="name"></div><div class="field"><label for="student-group">Академічна група <span class="required">*</span></label><input id="student-group" data-save type="text" placeholder="Наприклад: 25-172"></div></div>
+            <div class="field"><label for="conclusion">Загальний висновок <span class="required">*</span></label><textarea id="conclusion" data-save rows="5" placeholder="Під час виконання практичної роботи я порівняв(ла)... Найважливішими критеріями виявилися... Для професійної діяльності я рекомендую... тому що..."></textarea><span class="hint">Рекомендовано 4–6 змістовних речень: що перевірено, які відмінності знайдено, яке рішення обрано й чому.</span></div>
+            <div class="export-checks"><span class="checkline" id="check-identity"><span>○</span> Дані студента</span><span class="checkline" id="check-observations"><span>○</span> Практичні спостереження</span><span class="checkline" id="check-scores"><span>○</span> Таблиця оцінювання</span><span class="checkline" id="check-case"><span>○</span> Професійний кейс</span><span class="checkline" id="check-conclusion"><span>○</span> Висновок</span></div>
+            <div class="report-controls"><button type="button" class="btn primary export-btn" id="download-pdf"><span aria-hidden="true">⇩</span> Завантажити звіт у PDF</button><button type="button" class="btn secondary" id="print-report">Друк / Зберегти як PDF</button></div>
+            <p class="export-message" id="export-message" role="status" aria-live="polite"></p>
+          </div>
+          <div class="criteria-box"><b>Критерії оцінювання (12 балів)</b><div class="criteria-grid"><span>Оформлення двох документів <strong>3 б.</strong></span><span>Практичні спостереження <strong>3 б.</strong></span><span>Порівняння й аргументація <strong>4 б.</strong></span><span>Висновок та самоперевірка <strong>2 б.</strong></span></div><p>Підсумкову оцінку виставляє викладач за фактичними матеріалами. Оцінки 1–5 у таблиці — власний аналіз студента, а не навчальна оцінка.</p></div>
+          <button type="button" id="reset-all" class="reset-btn">↺ Очистити мої відповіді на цьому пристрої</button>
+        </section>
+
+        <section class="section source-section" id="sources"><div class="section-heading"><div><div class="section-kicker">МАТЕРІАЛИ</div><h2>Корисні джерела</h2></div></div><p class="section-desc">Для перевірки функцій використано офіційні ресурси розробників. Можливості можуть відрізнятися залежно від редакції програми.</p><div class="sources-list"><a href="https://support.microsoft.com/en-us/word/can-i-use-track-changes-in-word-for-the-web" target="_blank" rel="noopener noreferrer">Microsoft Support — рецензування у Word для вебу <span>↗</span></a><a href="https://www.google.com/docs/about/" target="_blank" rel="noopener noreferrer">Google Docs — спільне редагування та коментарі <span>↗</span></a><a href="https://books.libreoffice.org/en/GS71/GS7104-GettingStartedWithWriter.html" target="_blank" rel="noopener noreferrer">LibreOffice — можливості Writer <span>↗</span></a><a href="https://helpcenter.onlyoffice.com/docs/userguides/document-editor/program-interface/review-tab" target="_blank" rel="noopener noreferrer">ONLYOFFICE Help — рецензування та версії <span>↗</span></a></div></section>
+      </div>
+    </div>
+  </main>
+  <footer class="footer"><div class="wrap footer-flex"><div><b>ТКОІ <span> / </span> Практична робота №3</b><p>Технології комп'ютерної обробки інформації</p></div><span>Створено для навчання · Інтерактивна робота з PDF-звітом</span></div></footer>
+  <div id="print-document" aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
