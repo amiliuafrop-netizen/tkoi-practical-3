@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#081825">
+<meta name="description" content="NETWORK LAB — інтерактивна віртуальна лабораторія мереж, IP-адресації, OSI, DNS, DHCP, GPON і 5G з діагностикою помилок, підказками та оцінюванням.">
+<title>NETWORK LAB — віртуальна мережева лабораторія</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="data.js" defer></script>
+<script src="engine.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-logo"><svg viewBox="0 0 38 38" aria-hidden="true"><path d="M7 12 19 5l12 7v14l-12 7-12-7Z" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M7 12 19 19l12-7M19 19v14M11 24l8-5 8 5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="19" cy="19" r="3" fill="#8fe9df"/></svg></div><div><b>NETWORK<span>LAB</span></b><small>ВІРТУАЛЬНА ЛАБОРАТОРІЯ</small></div></div>
+    <div class="side-caption">НАВЧАЛЬНИЙ КОМПЛЕКС</div>
+    <nav id="moduleNav" aria-label="Навчальні модулі"></nav>
+    <div class="side-bottom"><div class="side-progress"><div class="side-row"><span>Твій прогрес</span><strong id="sideProgressText">0 / 8</strong></div><div class="progress-line"><span id="sideProgressFill"></span></div><small>Модулі з успішно виконаними місіями</small></div><div class="side-note">Спеціальність 172<br><b>Електронні комунікації та радіотехніка</b></div></div>
+  </aside>
+  <div class="main">
+    <header class="topbar"><button class="menu-toggle icon-button" id="menuToggle" aria-label="Відкрити меню">☰</button><div class="breadcrumbs">ОСВІТНІЙ ПРОЄКТ <span>/</span> ВСТУП ДО СПЕЦІАЛЬНОСТІ</div><div class="top-right"><span class="online-dot"></span><span>Локальне збереження</span><button class="top-export" id="headerReport">↗ Експорт звіту</button></div></header>
+    <main>
+      <section class="hero" id="hero"><div class="hero-grid"></div><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> ІНТЕРАКТИВНА ОСВІТНЯ ПЛАТФОРМА <span class="hero-version">V 1.0</span></div><h1>Навчись будувати<br><em>справжні мережі.</em></h1><p>Збирай топології, конфігуруй обладнання, шукай помилки та спостерігай за передаванням даних. Теорія перетворюється на практику.</p><div class="hero-actions"><button class="btn btn-accent" id="heroStart">Почати практику <span>↗</span></button><button class="btn btn-glass" id="heroGuide">Як це працює <span>↗</span></button></div></div><svg class="hero-art" viewBox="0 0 590 340" aria-hidden="true"><defs><linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2ccac2"/><stop offset="1" stop-color="#6389ed"/></linearGradient></defs><g fill="none" stroke="#4ca39f" opacity=".28"><circle cx="340" cy="162" r="143"/><circle cx="340" cy="162" r="104"/><circle cx="340" cy="162" r="64"/><path d="M196 162h288M340 19v286M235 70l210 186M235 256 445 70"/></g><g stroke="url(#lineGrad)" stroke-width="2" fill="none"><path d="M340 162 230 103 132 151M340 162 448 103 529 139M340 162 438 236 512 258M340 162 251 257 148 289"/></g><g fill="#0d2836" stroke="#75e4da" stroke-width="2"><rect x="306" y="128" width="68" height="68" rx="16"/><rect x="195" y="74" width="70" height="56" rx="11"/><rect x="414" y="78" width="68" height="54" rx="11"/><rect x="412" y="212" width="56" height="48" rx="10"/><rect x="220" y="236" width="62" height="46" rx="10"/></g><g fill="#9cfff0"><rect x="321" y="151" width="38" height="21" rx="5"/><circle cx="335" cy="178" r="3"/><circle cx="348" cy="178" r="3"/><rect x="212" y="91" width="36" height="19" rx="3"/><rect x="427" y="93" width="42" height="19" rx="3"/><rect x="426" y="229" width="28" height="14" rx="3"/><rect x="233" y="249" width="36" height="15" rx="3"/></g><g fill="#75e4da"><circle cx="132" cy="151" r="7"/><circle cx="529" cy="139" r="7"/><circle cx="512" cy="258" r="7"/><circle cx="148" cy="289" r="7"/></g><g font-family="monospace" font-size="12" fill="#9fd5d1"><text x="166" y="62">192.168.10.0/24</text><text x="381" y="41">TCP / IP</text><text x="303" y="224">01 10 11</text><text x="464" y="286">PING OK</text></g></svg><div class="hero-foot"><div><strong>08</strong><span>навчальних модулів</span></div><div><strong>08</strong><span>практичних місій</span></div><div><strong>12</strong><span>балів за квіз</span></div></div></section>
+      <div class="content-wrap">
+        <section class="chapter-heading"><div><div class="kicker" id="currentChapter">МОДУЛЬ 01 · МЕРЕЖЕВІ ОСНОВИ</div><h2 id="moduleTitle">Мережева лабораторія</h2><p id="moduleDesc">Збирай топологію і перевіряй конфігурацію.</p></div><div class="chapter-status" id="chapterStatus">◌ Місія не завершена</div></section>
+        <nav class="tabs" id="viewTabs" aria-label="Розділи лабораторії"><button data-view="lab" class="active">⌘ <span>Мережевий стенд</span></button><button data-view="theory">▤ <span>Теорія і довідник</span></button><button data-view="osi">⇄ <span>Шлях пакета OSI</span></button><button data-view="gpon">◈ <span>GPON Lab</span></button><button data-view="5g">◉ <span>5G Planner</span></button><button data-view="quiz">✦ <span>Перевірка знань</span></button></nav>
+        <div id="viewRoot" aria-live="polite"></div>
+        <footer class="footer"><span>© NETWORK LAB · Інтерактивний навчальний симулятор</span><span>Навчальна модель: спрощені мережеві процеси, без реального трафіку</span></footer>
+      </div>
+    </main>
+  </div>
+</div>
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
+<div class="modal-overlay hidden" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="guideHeading"><div class="modal"><button class="close-modal" id="closeGuide" aria-label="Закрити">×</button><div class="kicker">ШВИДКИЙ СТАРТ</div><h2 id="guideHeading">Як працює NETWORK LAB</h2><ol><li><b>Обери модуль</b> ліворуч і прочитай ціль місії.</li><li><b>Перетягни пристрій</b> на схему або натисни на нього в палітрі.</li><li><b>Увімкни режим «З’єднати»</b>, вибери два пристрої та тип кабелю.</li><li><b>Натисни на пристрій</b>, щоб змінити IP, маску, шлюз та сервіси.</li><li><b>Перевір топологію</b> — побачиш причини помилок і покрокові підказки.</li><li><b>Запусти Ping</b>, виконай місію та збережи PDF-звіт.</li></ol><p class="modal-sub">Симуляція навчальна: вона пояснює принципи, але не замінює Cisco Packet Tracer чи реальні лабораторні вимірювання.</p><button class="btn btn-accent" id="guideGo">До лабораторії ↗</button></div></div>
+</body>
+</html>
